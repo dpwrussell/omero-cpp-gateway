@@ -76,6 +76,10 @@ std::string BlitzGateway::getSessionId() const {
     return client->getSessionId();
 }
 
-MetadataServiceWrapper* BlitzGateway::getMetadataService() {
+MetadataServiceWrapper* BlitzGateway::getMetadataService() const {
     return metadataServiceWrapper;
+}
+
+QueryServiceWrapper* BlitzGateway::getQueryService() const {
+    return queryServiceWrapper;
 }

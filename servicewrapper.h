@@ -7,14 +7,16 @@ class BlitzGateway;
 
 class ServiceWrapper
 {
-public:
+protected:
     ServiceWrapper(BlitzGateway* connection);
 
 protected:
-
     void resyncConnection();
 
     BlitzGateway* connection;
+
+private:
+    virtual void checkService() = 0;
 };
 
 } // Namespace gateway

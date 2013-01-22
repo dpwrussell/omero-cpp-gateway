@@ -15,6 +15,8 @@ public:
     MetadataServiceWrapper(BlitzGateway* connection);
     std::vector<TagSetWrapper> loadTagSets();
 private:
+    virtual void checkService();
+
     omero::api::IMetadataPrx m;
 };
 

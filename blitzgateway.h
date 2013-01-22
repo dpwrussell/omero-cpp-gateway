@@ -5,6 +5,7 @@
 
 #include "omero/client.h"
 #include "metadataservicewrapper.h"
+#include "queryservicewrapper.h"
 
 namespace gateway {
 
@@ -16,7 +17,8 @@ public:
     bool connect();
     bool connect(std::string sessionUuid);
 
-    MetadataServiceWrapper* getMetadataService();
+    MetadataServiceWrapper* getMetadataService() const;
+    QueryServiceWrapper* getQueryService() const;
 
     //TODO Would be better to restrict access to client if possible
     omero::client_ptr getClient() const;
@@ -51,6 +53,7 @@ private:
 
     //Services
     MetadataServiceWrapper* metadataServiceWrapper;
+    QueryServiceWrapper* queryServiceWrapper;
 
 
 };

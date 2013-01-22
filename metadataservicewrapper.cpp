@@ -17,10 +17,7 @@ std::vector<TagSetWrapper> MetadataServiceWrapper::loadTagSets() {
 
     //TODO Before ensuring the service is created, resync the session/connection (In parent)
     // Ensure that the service is actually created
-    if (!m) {
-        std::cout << "init m" << std::endl;
-        m = connection->getClient()->getSession()->getMetadataService();
-    }
+    checkService();
 
     //TODO Feed in default parameters
     omero::sys::ParametersIPtr param = new omero::sys::ParametersI();
@@ -36,4 +33,11 @@ std::vector<TagSetWrapper> MetadataServiceWrapper::loadTagSets() {
     }
 
     return tagSetWrapperList;
+}
+
+void MetadataServiceWrapper::checkService() {
+    if (!m) {
+        std::cout << "init m" << std::endl;
+        m = connection->getClient()->getSession()->getMetadataService();
+    }
 }

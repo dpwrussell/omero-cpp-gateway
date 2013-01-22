@@ -34,22 +34,8 @@ int main()
         }
     }
 
-    gateway::MetadataServiceWrapper* m2 = bg->getMetadataService();
-
-    vector<gateway::TagSetWrapper> tagSets2 = m2->loadTagSets();
-
-    for (vector<gateway::TagSetWrapper>::iterator tagSetsIter = tagSets2.begin(); tagSetsIter != tagSets2.end(); ++tagSetsIter) {
-        gateway::TagSetWrapper tagSet = *tagSetsIter;
-
-        cout << "TagSet Name: " << tagSet.getName() << endl;
-
-        vector<gateway::TagWrapper> tags = tagSet.listTagsInTagSet();
-        for (vector<gateway::TagWrapper>::iterator tagIter = tags.begin(); tagIter != tags.end(); ++tagIter) {
-
-            gateway::TagWrapper tag = *tagIter;
-            cout << "\tTag Name: " << tag.getName() << endl;
-        }
-    }
+    gateway::QueryServiceWrapper* q = bg->getQueryService();
+    q->findByQuery("select * from experimenter");
 
     cout << "Hello World!" << endl;
 
