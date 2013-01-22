@@ -15,6 +15,8 @@ BlitzGateway::BlitzGateway(std::string username, std::string password, std::stri
 
 
     //TODO createProxies()
+    metadataServiceWrapper = new MetadataServiceWrapper(this);
+
     //TODO createServiceOptsDict() - Default user, etc
 }
 
@@ -75,5 +77,5 @@ std::string BlitzGateway::getSessionId() const {
 }
 
 MetadataServiceWrapper* BlitzGateway::getMetadataService() {
-    return new MetadataServiceWrapper(this);
+    return metadataServiceWrapper;
 }

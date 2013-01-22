@@ -9,12 +9,12 @@
 
 namespace gateway {
 
-class MetadataServiceWrapper;
+class BlitzGateway;
 
 class TagSetWrapper : public ObjectWrapper {
 
 public:
-    TagSetWrapper(MetadataServiceWrapper* m, omero::model::TagAnnotationIPtr tagSet);
+    TagSetWrapper(BlitzGateway* connection, omero::model::TagAnnotationIPtr tagSet);
 
     std::vector<TagWrapper> listTagsInTagSet() const;
     int countTagsInTagSet() const;
@@ -25,7 +25,7 @@ public:
 
 
 private:
-    MetadataServiceWrapper* m;
+    BlitzGateway* connection;
     omero::model::TagAnnotationIPtr tagSet;
 
 };

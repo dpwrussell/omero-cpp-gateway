@@ -7,19 +7,19 @@
 
 namespace gateway {
 
-class MetadataServiceWrapper;
+class BlitzGateway;
 
 class TagWrapper : public ObjectWrapper
 {
 public:
-    TagWrapper(MetadataServiceWrapper* m, omero::model::TagAnnotationIPtr tag);
+    TagWrapper(BlitzGateway* connection, omero::model::TagAnnotationIPtr tag);
 
     //TODO These 2 methods are const at the moment, but if I am having to reconnect and check/fix loadedness, that may not be the case
     int getId() const;
     std::string getName() const;
 
 private:
-    MetadataServiceWrapper* m;
+    BlitzGateway* connection;
     omero::model::TagAnnotationIPtr tag;
 };
 

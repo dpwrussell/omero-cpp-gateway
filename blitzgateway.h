@@ -49,7 +49,8 @@ private:
     void createSession();
     void createProxies();
 
-
+    //Services
+    MetadataServiceWrapper* metadataServiceWrapper;
 
 
 };

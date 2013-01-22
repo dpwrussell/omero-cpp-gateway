@@ -8,7 +8,8 @@ SOURCES += main.cpp \
     servicewrapper.cpp \
     wrapper/objectwrapper.cpp \
     wrapper/tagsetwrapper.cpp \
-    wrapper/tagwrapper.cpp
+    wrapper/tagwrapper.cpp \
+    queryservicewrapper.cpp
 
 
 win32:CONFIG(release, debug|release): LIBS += -L$$PWD/../../../../Ice/home/Ice-3.3.1/lib64/release/ -lIce -lIceUtil -lGlacier2
@@ -33,7 +34,8 @@ HEADERS += \
     servicewrapper.h \
     wrapper/objectwrapper.h \
     wrapper/tagsetwrapper.h \
-    wrapper/tagwrapper.h
+    wrapper/tagwrapper.h \
+    queryservicewrapper.h
 
 
 

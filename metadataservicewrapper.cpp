@@ -6,21 +6,19 @@
 #include "omero/model/TagAnnotationI.h"
 #include "wrapper/tagsetwrapper.h"
 
+#include <iostream>
+
 using namespace gateway;
 
 MetadataServiceWrapper::MetadataServiceWrapper(BlitzGateway* connection) : ServiceWrapper(connection) {}
 
-void MetadataServiceWrapper::doSomething() {
-    //TODO On each method, check proxy and reconnect if required
-    //m->loadTagSets();
-}
-
-//TODO Should return a list of TagSetWrappers
+//TODO Should return a list of TagSetWrappers (typedef)
 std::vector<TagSetWrapper> MetadataServiceWrapper::loadTagSets() {
 
     //TODO Before ensuring the service is created, resync the session/connection (In parent)
     // Ensure that the service is actually created
     if (!m) {
+        std::cout << "init m" << std::endl;
         m = connection->getClient()->getSession()->getMetadataService();
     }
 
@@ -34,7 +32,7 @@ std::vector<TagSetWrapper> MetadataServiceWrapper::loadTagSets() {
 
     for (omero::api::IObjectList::iterator tagSetIter = tagSets.begin(); tagSetIter != tagSets.end(); ++tagSetIter) {
         omero::model::TagAnnotationIPtr tagSet = omero::model::TagAnnotationIPtr::dynamicCast(*tagSetIter);
-        tagSetWrapperList.push_back(TagSetWrapper(this, tagSet));
+        tagSetWrapperList.push_back(TagSetWrapper(connection, tagSet));
     }
 
     return tagSetWrapperList;

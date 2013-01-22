@@ -13,7 +13,6 @@ class MetadataServiceWrapper : public ServiceWrapper {
 
 public:
     MetadataServiceWrapper(BlitzGateway* connection);
-    void doSomething();
     std::vector<TagSetWrapper> loadTagSets();
 private:
     omero::api::IMetadataPrx m;
