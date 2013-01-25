@@ -2,6 +2,4 @@
 
 using namespace gateway;
 
-ObjectWrapper::ObjectWrapper()
-{
-}
+

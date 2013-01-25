@@ -12,7 +12,6 @@ QueryServiceWrapper::QueryServiceWrapper(BlitzGateway* connection) : ServiceWrap
 
 void QueryServiceWrapper::findByQuery(const std::string& query) {
 
-    std::cout << "Test0" << std::endl;
     //TODO Before ensuring the service is created, resync the session/connection (In parent)
     // Ensure that the service is actually created
     checkService();
@@ -24,7 +23,12 @@ void QueryServiceWrapper::findByQuery(const std::string& query) {
     omero::model::IObjectPtr result = q->findByQuery("select e from Experimenter e where e.id=1", param);
     omero::model::ExperimenterIPtr e = omero::model::ExperimenterIPtr::dynamicCast(result);
 
-    return result;
+
+    ExperimenterWrapper ew(e);
+
+    std::cout << "first: " << ew.getFirstName() << std::endl;
+
+//    return result;
 
     //e = q.findByQuery("select e from Experimenter e where e.id = %i" % self._obj.details.owner.id.val,None, self._conn.SERVICE_OPTS)
     //self._author = e.firstName.val + " " + e.lastName.val

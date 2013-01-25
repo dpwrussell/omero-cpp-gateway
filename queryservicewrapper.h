@@ -3,6 +3,8 @@
 
 #include "servicewrapper.h"
 
+#include "wrapper/experimenterwrapper.h"
+
 #include "omero/api/IQuery.h"
 #include <string>
 
@@ -12,8 +14,8 @@ class QueryServiceWrapper : public ServiceWrapper
 {
 public:
     QueryServiceWrapper(BlitzGateway* connection);
-    omero::model::IObject findByQuery(const std::string& query);
-    omero::api::IObjectList fineAllByQuery(const std::string& query);
+    void findByQuery(const std::string& query);
+//    omero::api::IObjectList fineAllByQuery(const std::string& query);
 
 private:
     virtual void checkService();

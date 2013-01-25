@@ -11,7 +11,7 @@ namespace gateway {
 
 class BlitzGateway;
 
-class TagSetWrapper : public ObjectWrapper {
+class TagSetWrapper {
 
 public:
     TagSetWrapper(BlitzGateway* connection, omero::model::TagAnnotationIPtr tagSet);
