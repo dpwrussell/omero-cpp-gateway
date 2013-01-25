@@ -14,6 +14,7 @@ class MetadataServiceWrapper : public ServiceWrapper {
 public:
     MetadataServiceWrapper(BlitzGateway* connection);
     std::vector<TagSetWrapper> loadTagSets();
+
 private:
     virtual void checkService();
 
