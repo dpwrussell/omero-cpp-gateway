@@ -16,6 +16,7 @@ BlitzGateway::BlitzGateway(std::string username, std::string password, std::stri
 
     //TODO createProxies()
     metadataServiceWrapper = new MetadataServiceWrapper(this);
+    queryServiceWrapper = new QueryServiceWrapper(this);
 
     //TODO createServiceOptsDict() - Default user, etc
 }

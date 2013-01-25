@@ -2,6 +2,9 @@
 
 #include "blitzgateway.h"
 #include "omero/sys/ParametersI.h"
+#include "omero/api/IQuery.h"
+
+#include <iostream>
 
 using namespace gateway;
 
@@ -9,6 +12,7 @@ QueryServiceWrapper::QueryServiceWrapper(BlitzGateway* connection) : ServiceWrap
 
 void QueryServiceWrapper::findByQuery(const std::string& query) {
 
+    std::cout << "Test0" << std::endl;
     //TODO Before ensuring the service is created, resync the session/connection (In parent)
     // Ensure that the service is actually created
     checkService();
@@ -16,7 +20,24 @@ void QueryServiceWrapper::findByQuery(const std::string& query) {
     //TODO Feed in default parameters
     omero::sys::ParametersIPtr param = new omero::sys::ParametersI();
 
-    q->findByQuery(query, param);
+    //omero::api::IObjectList results = q->findByQuery(query, param);
+    omero::model::IObjectPtr result = q->findByQuery("select e from Experimenter e where e.id=1", param);
+    omero::model::ExperimenterIPtr e = omero::model::ExperimenterIPtr::dynamicCast(result);
+
+    return result;
+
+    //e = q.findByQuery("select e from Experimenter e where e.id = %i" % self._obj.details.owner.id.val,None, self._conn.SERVICE_OPTS)
+    //self._author = e.firstName.val + " " + e.lastName.val
+
+
+//    int i=0;
+
+//    for (omero::api::IObjectList::iterator resultsIter = omero::api::IObjectList::iterator(results.begin()); resultsIter != results.end(); ++results) {
+//        std::cout << "Row: " << ++i <<
+
+//    }
+
+
 }
 
 void QueryServiceWrapper::checkService() {

@@ -25,7 +25,7 @@ int TagSetWrapper::countTagsInTagSet() const {
     //TODO Do I need to check status and connection before I do anything?
     QueryServiceWrapper* q = connection->getQueryService();
 
-    q->findByQuery();
+//    q->findByQuery();
 
 }
 
