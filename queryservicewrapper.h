@@ -14,7 +14,7 @@ class QueryServiceWrapper : public ServiceWrapper
 {
 public:
     QueryServiceWrapper(BlitzGateway* connection);
-    void findByQuery(const std::string& query);
+    ObjectWrapperI* findByQuery(const std::string& query);
 //    omero::api::IObjectList fineAllByQuery(const std::string& query);
 
 private:

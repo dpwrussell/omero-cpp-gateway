@@ -10,6 +10,7 @@ namespace gateway {
 class ExperimenterWrapper : public ObjectWrapper<omero::model::ExperimenterPtr> {
 public:
     ExperimenterWrapper(omero::model::ExperimenterIPtr experimenter);
+    ExperimenterWrapper(ObjectWrapperI& experimenterWrapper);
     std::string getFirstName() const;
 };
 

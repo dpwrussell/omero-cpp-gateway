@@ -4,6 +4,7 @@
 #include "metadataservicewrapper.h"
 #include "wrapper/tagsetwrapper.h"
 #include "wrapper/tagwrapper.h"
+#include "wrapper/objectwrapper.h"
 
 #include <vector>
 
@@ -35,7 +36,11 @@ int main()
     }
 
     gateway::QueryServiceWrapper* q = bg->getQueryService();
-    q->findByQuery("select * from experimenter");
+    gateway::ObjectWrapperI* owi = q->findByQuery("select e from Experimenter e where e.id=1");
+    gateway::ExperimenterWrapper ew(*owi);
+
+    cout << "first: " << ew.getFirstName() << endl;
+
 
     cout << "Hello World!" << endl;
 
