@@ -4,6 +4,7 @@
 #include "wrapper/objectwrapper.h"
 #include "omero/model/ExperimenterI.h"
 #include <string>
+#include <tr1/memory>
 #include "omerowrap.h"
 
 namespace gateway {
@@ -11,19 +12,14 @@ namespace gateway {
 class ExperimenterWrapper : public ObjectWrapper<omero::model::ExperimenterPtr> {
 
 public:
-    ExperimenterWrapper(omero::model::ExperimenterIPtr experimenter) : ObjectWrapper<omero::model::ExperimenterPtr>(experimenter) {}
-//    ExperimenterWrapper(omero::model::ExperimenterIPtr experimenter);
-    ExperimenterWrapper(ObjectWrapperI& experimenterWrapper) :
-        ObjectWrapper<omero::model::ExperimenterPtr>(omero::model::ExperimenterIPtr::dynamicCast(experimenterWrapper.getObject())) {}
+    ExperimenterWrapper(omero::model::ExperimenterIPtr experimenter);
+    ExperimenterWrapper(ObjectWrapperI& objectWrapper);
 
-//    ExperimenterWrapper(ObjectWrapperI& experimenterWrapper);
-//    std::string getFirstName() const;
-    std::string getFirstName() const {
-        return wrap<std::string,omero::RStringPtr>(object->getFirstName());
-    }
+    std::string getFirstName() const;
 };
 
-} // Namespace gateway
+typedef std::tr1::shared_ptr<ExperimenterWrapper> ExperimenterWrapperPtr;
 
+} // Namespace gateway
 
 #endif // EXPERIMENTERWRAPPER_H

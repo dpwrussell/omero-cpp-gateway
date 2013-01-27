@@ -3,11 +3,11 @@
 #include "omerowrap.h"
 
 using namespace gateway;
+ExperimenterWrapper::ExperimenterWrapper(omero::model::ExperimenterIPtr experimenter) : ObjectWrapper<omero::model::ExperimenterPtr>(experimenter) {}
 
-//ExperimenterWrapper::ExperimenterWrapper(omero::model::ExperimenterIPtr experimenter) : ObjectWrapper(experimenter) {}
+ExperimenterWrapper::ExperimenterWrapper(ObjectWrapperI& objectWrapper) :
+    ObjectWrapper<omero::model::ExperimenterPtr>(omero::model::ExperimenterIPtr::dynamicCast(objectWrapper.getObject())) {}
 
-//ExperimenterWrapper::ExperimenterWrapper(ObjectWrapperI& experimenterWrapper) : ObjectWrapper(omero::model::ExperimenterIPtr::dynamicCast(experimenterWrapper.getObject())) {}
-
-//std::string ExperimenterWrapper::getFirstName() const {
-//    return wrap<std::string,omero::RStringPtr>(object->getFirstName());
-//}
+std::string ExperimenterWrapper::getFirstName() const {
+    return wrap<std::string,omero::RStringPtr>(object->getFirstName());
+}

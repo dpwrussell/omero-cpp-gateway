@@ -10,7 +10,7 @@ using namespace gateway;
 
 QueryServiceWrapper::QueryServiceWrapper(BlitzGateway* connection) : ServiceWrapper(connection) {}
 
-ObjectWrapperI* QueryServiceWrapper::findByQuery(const std::string& query) {
+ObjectWrapperIPtr QueryServiceWrapper::findByQuery(const std::string& query) {
 
     //TODO Before ensuring the service is created, resync the session/connection (In parent)
     // Ensure that the service is actually created
@@ -26,7 +26,10 @@ ObjectWrapperI* QueryServiceWrapper::findByQuery(const std::string& query) {
 
     //TODO I could template findByQuery to take an object of the type which is expecting to receive, I can then do the dynamic cast and create the correct object before returning
 
-    return new ObjectWrapper<omero::model::IObjectPtr>(result);
+    ObjectWrapperIPtr resultPtr(new ObjectWrapper<omero::model::IObjectPtr>(result));
+
+    return resultPtr;
+//                ObjectWrapper<omero::model::IObjectPtr>(result);
 //    ExperimenterWrapper ew(e);
 
 

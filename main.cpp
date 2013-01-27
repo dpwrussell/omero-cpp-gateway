@@ -36,13 +36,11 @@ int main()
     }
 
     gateway::QueryServiceWrapper* q = bg->getQueryService();
-    gateway::ObjectWrapperI* owi = q->findByQuery("select e from Experimenter e where e.id=1");
-    gateway::ExperimenterWrapper ew(*owi);
-
-    cout << "first: " << ew.getFirstName() << endl;
+    gateway::ObjectWrapperIPtr owi = q->findByQuery("select e from Experimenter e where e.id=1");
+    gateway::ExperimenterWrapperPtr ew(new gateway::ExperimenterWrapper(*owi));
 
 
-
+    cout << "first: " << ew->getFirstName() << endl;
 
     cout << "Hello World!" << endl;
 
