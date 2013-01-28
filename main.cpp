@@ -6,6 +6,9 @@
 #include "wrapper/tagwrapper.h"
 #include "wrapper/objectwrapper.h"
 
+#include "omerowrap.h"
+#include <omero/RTypesI.h>
+
 #include <vector>
 
 using namespace std;
@@ -39,8 +42,16 @@ int main()
     gateway::ObjectWrapperIPtr owi = q->findByQuery("select e from Experimenter e where e.id=1");
     gateway::ExperimenterWrapperPtr ew(new gateway::ExperimenterWrapper(*owi));
 
+    omero::RStringPtr rsp = omero::rtypes::rstring("something");
+    omero::RStringPtr rspn = 0;
 
-    cout << "first: " << ew->getFirstName() << endl;
+    string* s = gateway::wrap<std::string,omero::RStringPtr>(rsp);
+    string* n = gateway::wrap<std::string,omero::RStringPtr>(rspn);
+
+    cout << "first: " << *(ew->getFirstName()) << endl;
+
+    cout << "s: " << *s << endl;
+    cout << "n: " << *n << endl;
 
     cout << "Hello World!" << endl;
 

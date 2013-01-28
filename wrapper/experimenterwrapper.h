@@ -15,7 +15,7 @@ public:
     ExperimenterWrapper(omero::model::ExperimenterIPtr experimenter);
     ExperimenterWrapper(ObjectWrapperI& objectWrapper);
 
-    std::string getFirstName() const;
+    std::string* getFirstName() const;
 };
 
 typedef std::tr1::shared_ptr<ExperimenterWrapper> ExperimenterWrapperPtr;

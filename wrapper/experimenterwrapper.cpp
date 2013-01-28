@@ -8,6 +8,6 @@ ExperimenterWrapper::ExperimenterWrapper(omero::model::ExperimenterIPtr experime
 ExperimenterWrapper::ExperimenterWrapper(ObjectWrapperI& objectWrapper) :
     ObjectWrapper<omero::model::ExperimenterPtr>(omero::model::ExperimenterIPtr::dynamicCast(objectWrapper.getObject())) {}
 
-std::string ExperimenterWrapper::getFirstName() const {
+std::string* ExperimenterWrapper::getFirstName() const {
     return wrap<std::string,omero::RStringPtr>(object->getFirstName());
 }
