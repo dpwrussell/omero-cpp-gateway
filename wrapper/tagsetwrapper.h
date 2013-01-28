@@ -3,7 +3,6 @@
 
 #include <string>
 #include <vector>
-#include "wrapper/objectwrapper.h"
 #include "wrapper/tagwrapper.h"
 #include "omero/model/TagAnnotationI.h"
 

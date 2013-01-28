@@ -50,6 +50,7 @@ bool BlitzGateway::connect() {
         //TODO Log - "created connection (uuid=self._sessionUuid)
         return true;
     }
+    return false;
 }
 
 bool BlitzGateway::connect(std::string sessionUuid) {

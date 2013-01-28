@@ -1,2 +1,5 @@
 # Qt User Config file
 *.pro.user
+*.o
+main
+BlitzGateway
