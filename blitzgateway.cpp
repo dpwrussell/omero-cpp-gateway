@@ -12,11 +12,11 @@ BlitzGateway::BlitzGateway(std::string username, std::string password, std::stri
 }
 
 bool BlitzGateway::connect() {
-    g->connect();
+    return g->connect();
 }
 
 bool BlitzGateway::connect(std::string sessionUuid) {
-    g->connect(sessionUuid);
+    return g->connect(sessionUuid);
 }
 
 std::string BlitzGateway::getSessionId() const {

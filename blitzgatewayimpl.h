@@ -36,7 +36,6 @@ class BlitzGatewayImpl
 public:
     BlitzGatewayImpl(std::string username, std::string password, std::string group, std::string host, int port);
     ~BlitzGatewayImpl();
-    bool operator==(const BlitzGatewayImpl& other) const;
 
     bool connect();
     bool connect(std::string sessionUuid);

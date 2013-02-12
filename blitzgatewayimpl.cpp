@@ -44,11 +44,6 @@ BlitzGatewayImpl::~BlitzGatewayImpl()
     std::cout << "BlitzGatewayImpl destructed" << std::endl;
 }
 
-bool BlitzGatewayImpl::operator==(const BlitzGatewayImpl& other) const
-{
-///TODO: return ...;
-}
-
 bool BlitzGatewayImpl::connect() {
     if (!sessionUuid.empty()) {
         if (connected) {

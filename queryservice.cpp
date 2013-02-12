@@ -30,7 +30,7 @@ using namespace gateway;
 QueryService::QueryService(std::tr1::shared_ptr< QueryServiceImpl > q) : q(q) {}
 
 QueryService::~QueryService() {
-    std::cout << "Destruct QueryService" << std::endl;
+    std::cout << "QueryService destructed" << std::endl;
 }
 
 std::tr1::shared_ptr<ObjectWrapper> QueryService::findByQuery(const std::string& query) {
