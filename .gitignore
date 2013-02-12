@@ -1,5 +1,8 @@
 # Qt User Config file
 *.pro.user
+BlitzGateway.kdev4
 *.o
+*.so
 main
 BlitzGateway
+*~
