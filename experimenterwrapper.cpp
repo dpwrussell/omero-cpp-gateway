@@ -17,7 +17,7 @@
     51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 */
 
-
+#include "objectwrapper.h"
 #include "experimenterwrapper.h"
 #include "experimenterwrapperimpl.h"
 
@@ -26,17 +26,20 @@
 
 using namespace gateway;
 
-std::tr1::shared_ptr< ExperimenterWrapper > ExperimenterWrapper::staticCast(const std::tr1::shared_ptr< ObjectWrapper >& other)
+ExperimenterWrapper::ExperimenterWrapper(std::tr1::shared_ptr<ExperimenterWrapperImpl> experimenterWrapperImpl): ObjectWrapper(experimenterWrapperImpl) {}
+
+
+std::tr1::shared_ptr< ExperimenterWrapper > ExperimenterWrapper::dynamicCast(const std::tr1::shared_ptr< ObjectWrapper >& other)
 {
-    std::tr1::shared_ptr<ExperimenterWrapper> experimenterWrapper(std::tr1::static_pointer_cast<ExperimenterWrapper>(other));
-    return experimenterWrapper;
+    return std::tr1::dynamic_pointer_cast<ExperimenterWrapper>(other);
 }
+
 
 std::tr1::shared_ptr<std::string> ExperimenterWrapper::getFirstName() const
 {
-    
-    std::tr1::shared_ptr<ExperimenterWrapperImpl> eImpl(std::tr1::static_pointer_cast<ExperimenterWrapperImpl>(o));
-    return eImpl->getFirstName();
+    return std::tr1::dynamic_pointer_cast<ExperimenterWrapperImpl>(o)->getFirstName();
+//     std::tr1::shared_ptr<ExperimenterWrapperImpl> eImpl(std::tr1::static_pointer_cast<ExperimenterWrapperImpl>(o));
+//     return eImpl->getFirstName();
 }
 
 ExperimenterWrapper::~ExperimenterWrapper()

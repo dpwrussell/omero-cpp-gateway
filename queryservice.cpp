@@ -34,7 +34,8 @@ QueryService::~QueryService() {
 }
 
 std::tr1::shared_ptr<ObjectWrapper> QueryService::findByQuery(const std::string& query) {
-    std::tr1::shared_ptr<ObjectWrapper> o(new ObjectWrapper(q->findByQuery(query)));
-
-    return o;
+//     std::tr1::shared_ptr<ObjectWrapper> o(new ObjectWrapper(q->findByQuery(query)));
+// 
+//     return o;
+    return q->findByQueryWrap(query);
 }

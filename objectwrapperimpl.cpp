@@ -20,9 +20,14 @@
 
 #include "objectwrapperimpl.h"
 
+#include <iostream>
+
 using namespace gateway;
 
 ObjectWrapperImpl::ObjectWrapperImpl(omero::model::IObjectPtr o) : o(o) {}
 
-ObjectWrapperImpl::~ObjectWrapperImpl() {}
+ObjectWrapperImpl::~ObjectWrapperImpl() {
+
+    std::cout << "ObjectWrapperImpl destructed (From derived class automatically)" << std::endl;
+}
 

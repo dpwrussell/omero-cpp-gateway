@@ -31,14 +31,15 @@ class ObjectWrapper
 {
 
 public:
-    ObjectWrapper(std::tr1::shared_ptr<ObjectWrapperImpl> o);
-    virtual ~ObjectWrapper();
+    
+    virtual ~ObjectWrapper() = 0;
 
 private:
     ObjectWrapper(const ObjectWrapper& other);
     ObjectWrapper& operator=(const ObjectWrapper& other);
 
 protected:
+    ObjectWrapper(std::tr1::shared_ptr<ObjectWrapperImpl> o);
     std::tr1::shared_ptr<ObjectWrapperImpl> o;
 
 };

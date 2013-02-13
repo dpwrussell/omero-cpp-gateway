@@ -28,6 +28,7 @@ namespace gateway {
 
 class BlitzGatewayImpl;
 class ObjectWrapperImpl;
+class ObjectWrapper;
 
 class QueryServiceImpl
 {
@@ -37,11 +38,18 @@ public:
     virtual ~QueryServiceImpl();
 
     std::tr1::shared_ptr<ObjectWrapperImpl> findByQuery(const std::string& query);
+    //TODO findByQuery Wrap should really by a function createWrapper of ObjectWrapperImpl derivatives
+    // but as it contains a shared pointer to ObjectWrapperImpl derivatives, this will require inheritance
+    // from enable_shared_from_this in order to get access to the counter.
+    // Otherwise returning a pointer to this would eventually result in a double free.
+    std::tr1::shared_ptr<ObjectWrapper> findByQueryWrap(const std::string& query);
 private:
     QueryServiceImpl(const QueryServiceImpl& other);
     QueryServiceImpl& operator=(const QueryServiceImpl& other);
     
     void checkService();
+    std::tr1::shared_ptr<ObjectWrapperImpl> objectFactory(omero::model::IObjectPtr o);
+    std::tr1::shared_ptr<ObjectWrapper> objectFactoryWrap(omero::model::IObjectPtr o);
 
     BlitzGatewayImpl& g;
     omero::api::IQueryPrx q;

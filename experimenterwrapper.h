@@ -27,11 +27,13 @@
 
 namespace gateway {
 
+class ExperimenterWrapperImpl;
+    
 class ExperimenterWrapper : public ObjectWrapper {
 
 public:
-    ExperimenterWrapper();
-    static std::tr1::shared_ptr<ExperimenterWrapper> staticCast(const std::tr1::shared_ptr<ObjectWrapper>& other);
+    ExperimenterWrapper(std::tr1::shared_ptr<ExperimenterWrapperImpl> experimenterWrapperImpl);
+    static std::tr1::shared_ptr<ExperimenterWrapper> dynamicCast(const std::tr1::shared_ptr<ObjectWrapper>& other);
     virtual ~ExperimenterWrapper();
 
     std::tr1::shared_ptr<std::string> getFirstName() const;

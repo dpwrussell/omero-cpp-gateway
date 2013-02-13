@@ -21,6 +21,9 @@
 #include "queryserviceimpl.h"
 #include "blitzgatewayimpl.h"
 #include "objectwrapperimpl.h"
+#include "objectwrapper.h"
+#include "experimenterwrapper.h"
+#include "experimenterwrapperimpl.h"
 
 #include "omero/sys/ParametersI.h"
 #include "omero/model/IObject.h"
@@ -28,6 +31,7 @@
 
 #include <tr1/memory>
 #include <iostream>
+#include <string>
 
 using namespace gateway;
 
@@ -46,12 +50,21 @@ std::tr1::shared_ptr<ObjectWrapperImpl> QueryServiceImpl::findByQuery(const std:
     //TODO Feed in default parameters
     omero::sys::ParametersIPtr param = new omero::sys::ParametersI();
     
-    //omero::api::IObjectList results = q->findByQuery(query, param);
     omero::model::IObjectPtr result = q->findByQuery(query, param);
 
-    std::tr1::shared_ptr<ObjectWrapperImpl> resultWrapper(new ObjectWrapperImpl(result));
-    return resultWrapper;
+    return objectFactory(result);
+}
+
+std::tr1::shared_ptr<ObjectWrapper> QueryServiceImpl::findByQueryWrap(const std::string& query) {
+    //TODO Before ensuring the service is created, resync the session/connection (In parent)
+    // Ensure that the service is actually created
+    checkService();
     
+    //TODO Feed in default parameters
+    omero::sys::ParametersIPtr param = new omero::sys::ParametersI();
+    
+    omero::model::IObjectPtr result = q->findByQuery(query, param);
+    return objectFactoryWrap(result);
 }
 
 
@@ -66,4 +79,27 @@ void QueryServiceImpl::checkService() {
         std::cout << "checkService3" << std::endl;
         q = g.getClient()->getSession()->getQueryService();
     }
+}
+
+std::tr1::shared_ptr<ObjectWrapperImpl> QueryServiceImpl::objectFactory(omero::model::IObjectPtr o) {
+    std::string iceType = o->ice_id();
+
+    if (iceType == "::omero::model::Experimenter") {
+        omero::model::ExperimenterIPtr experimenterPtr = omero::model::ExperimenterIPtr::dynamicCast(o);
+        return std::tr1::shared_ptr<ExperimenterWrapperImpl>(new ExperimenterWrapperImpl(experimenterPtr));
+    }
+    
+    return std::tr1::shared_ptr<ObjectWrapperImpl>();
+}
+
+std::tr1::shared_ptr<ObjectWrapper> QueryServiceImpl::objectFactoryWrap(omero::model::IObjectPtr o) {
+    std::string iceType = o->ice_id();
+
+    if (iceType == "::omero::model::Experimenter") {
+        omero::model::ExperimenterIPtr experimenterPtr = omero::model::ExperimenterIPtr::dynamicCast(o);
+        std::tr1::shared_ptr<ExperimenterWrapperImpl> experimenterWrapperImplPtr (new ExperimenterWrapperImpl(experimenterPtr));
+        return std::tr1::shared_ptr<ExperimenterWrapper>(new ExperimenterWrapper(experimenterWrapperImplPtr));
+    }
+
+    return std::tr1::shared_ptr<ObjectWrapper>();
 }

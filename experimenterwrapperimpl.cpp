@@ -19,10 +19,13 @@
 
 
 #include "experimenterwrapperimpl.h"
+#include "experimenterwrapper.h"
 
 #include "omero/model/ExperimenterI.h"
 
 using namespace gateway;
+
+ExperimenterWrapperImpl::ExperimenterWrapperImpl(omero::model::ExperimenterIPtr o): ObjectWrapperImpl(o) {}
 
 std::tr1::shared_ptr<std::string> ExperimenterWrapperImpl::getFirstName() const {
     omero::model::ExperimenterIPtr e = omero::model::ExperimenterIPtr::dynamicCast(o);
@@ -30,9 +33,8 @@ std::tr1::shared_ptr<std::string> ExperimenterWrapperImpl::getFirstName() const 
     
 }
 
-ExperimenterWrapperImpl::~ExperimenterWrapperImpl()
-{
-    std::cout << "Destruct ExperimenterWrapperImpl" << std::endl;
+ExperimenterWrapperImpl::~ExperimenterWrapperImpl() {
+    std::cout << "ExperimenterWrapperImpl destructed" << std::endl;
 }
 
 

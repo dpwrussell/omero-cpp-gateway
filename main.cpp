@@ -21,10 +21,10 @@ int main()
     tr1::shared_ptr<gateway::QueryService> q = g.getQueryService();
     tr1::shared_ptr<gateway::ObjectWrapper> o = q->findByQuery("select e from Experimenter e where e.id=1");
 
-    std::tr1::shared_ptr<gateway::ExperimenterWrapper> e = gateway::ExperimenterWrapper::staticCast(o);
+    std::tr1::shared_ptr<gateway::ExperimenterWrapper> e = gateway::ExperimenterWrapper::dynamicCast(o);
 
     cout << "firstName: " << *(e->getFirstName()) << endl;
-    
+ 
     return 0;
 }
 

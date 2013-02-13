@@ -23,18 +23,20 @@
 
 #include "objectwrapperimpl.h"
 
+#include "omero/model/ExperimenterI.h"
+
 #include <string>
 #include <tr1/memory>
 
 namespace gateway {
 
-class ExperimenterWrapperImpl : public ObjectWrapperImpl
-{
+class ExperimenterWrapper;
+    
+class ExperimenterWrapperImpl : public ObjectWrapperImpl {
 
 public:
-    ExperimenterWrapperImpl();
+    ExperimenterWrapperImpl(omero::model::ExperimenterIPtr o);
     virtual ~ExperimenterWrapperImpl();
-
 
     std::tr1::shared_ptr<std::string> getFirstName() const;
 

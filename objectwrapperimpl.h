@@ -23,19 +23,23 @@
 
 #include "omero/model/IObject.h"
 
+#include <tr1/memory>
+
+#include <string>
+
 namespace gateway {
 
-class ObjectWrapperImpl
-{
+class ObjectWrapperImpl {
 
 public:
+    virtual ~ObjectWrapperImpl() = 0;
+protected:
     ObjectWrapperImpl(omero::model::IObjectPtr o);
-    virtual ~ObjectWrapperImpl();
-    
 private:
     ObjectWrapperImpl(const ObjectWrapperImpl& other);
     ObjectWrapperImpl& operator=(const ObjectWrapperImpl& other);
-
+    
+    
 protected:
     omero::model::IObjectPtr o;
 };
